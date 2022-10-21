@@ -1,0 +1,8 @@
+# questions
+package_name:
+  type: str
+  help: What is your package name?
+
+module_name:
+  type: str
+  help: What is your Python module name?

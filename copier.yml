@@ -1,8 +1,12 @@
-# questions
 package_name:
   type: str
   help: What is your package name?
 
 module_name:
   type: str
-  help: What is your Python module name?
+  help: Who is the author?
+  default: Yke Rusticus
+
+project_description:
+  type: str
+  help: How would you describe the project?

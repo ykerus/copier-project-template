@@ -1,6 +1,6 @@
 .PHONY: help
 help:
-	@echo "install            : Install the package ({{cookiecutter.package_name}})"
+	@echo "install            : Install the package ({{package_name}})"
 	@echo "kernel-install     : Intall the poetry env as kernel for notebook development"
 	@echo "git-init           : Initialize the project as git repo (to allow pre-commit use)"
 	@echo "pre-commit-install : Install pre-commit hooks"
@@ -14,7 +14,7 @@ install:
 
 .PHONY: kernel-install
 kernel-install:
-	poetry run ipython kernel install --user --name={{cookiecutter.directory_name}}
+	poetry run ipython kernel install --user --name={{project_name}}
 
 .PHONY: git-init
 git-init:

@@ -1,11 +1,11 @@
 [tool.poetry]
-name = "{{cookiecutter.package_name}}"
+name = "{{package_name}}"
 version = "0.1.0"
-description = "{{cookiecutter.project_description}}"
-authors = ["{{cookiecutter.author}}"]
+description = "{{project_description}}"
+authors = ["{{author}}"]
 
 [tool.poetry.dependencies]
-python = "{{cookiecutter.python_version}}"
+python = "{{python_version}}"
 numpy = "1.21.5"  # Prevents failing build M1
 
 [tool.poetry.group.dev.dependencies]

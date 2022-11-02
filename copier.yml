@@ -1,8 +1,12 @@
+project_name:
+  type: str
+  help: What is the name of the project?
+
 package_name:
   type: str
-  help: What is your package name?
+  help: What is the name of the package?
 
-module_name:
+author:
   type: str
   help: Who is the author?
   default: Yke Rusticus

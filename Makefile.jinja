@@ -1,20 +1,25 @@
 .PHONY: help
 help:
-	@echo "install            : Install the package ({{package_name}})"
-	@echo "kernel-install     : Intall the poetry env as kernel for notebook development"
-	@echo "git-init           : Initialize the project as git repo (to allow pre-commit use)"
+	@echo "install-poetry     : Install poetry, needed to install packages"
+	@echo "poetry-config      : Configure poetry"
+	@echo "package-install    : Install the package `{{package_name}}` and its dependencies"
+	@echo "git-init           : Initialize the project as git repo (enables pre-commit use)"
 	@echo "pre-commit-install : Install pre-commit hooks"
 	@echo "pre-commit         : Run pre-commit on all files"
-	@echo "setup-dev          : Run series of commands to setup dev environment"
-	@echo "setup              : Run the make install command"
+	@echo "setup-init         : Setup everthing and init git repo"
+	@echo "setup              : Setup everthing except git repo"
 
-.PHONY: install
-install:
-	poetry install
+.PHONY: install-poetry
+install-poetry:
+	pip install poetry
 
-.PHONY: kernel-install
-kernel-install:
-	poetry run ipython kernel install --user --name={{project_name}}
+.PHONY: poetry-config
+poetry-config:
+	poetry config virtualenvs.in-project true
+
+.PHONY: package-install
+package-install:
+	poetry install $(test "$YOUR_ENV" = PRD && echo "--no-dev")
 
 .PHONY: git-init
 git-init:
@@ -30,8 +35,8 @@ pre-commit-install:
 pre-commit:
 	poetry run pre-commit run -a
 
-.PHONY: setup-dev
-setup-dev: install kernel-install git-init pre-commit-install
+.PHONY: setup-init
+setup-init: install-poetry poetry-config package-install git-init pre-commit-install
 
 .PHONY: setup
-setup: install
+setup-init: install-poetry poetry-config package-install pre-commit-install

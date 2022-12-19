@@ -5,7 +5,7 @@ help:
 	@echo "package-install    : Install the package `{{package_name}}` and its dependencies"
 	@echo "git-init           : Initialize the project as git repo (enables pre-commit use)"
 	@echo "pre-commit-install : Install pre-commit hooks"
-	@echo "pre-commit         : Run pre-commit on all files"
+	@echo "pre-commit         : Run pre-commit"
 	@echo "setup-init         : Setup everthing and init git repo"
 	@echo "setup              : Setup everthing except git repo"
 
@@ -17,8 +17,8 @@ install-poetry:
 poetry-config:
 	poetry config virtualenvs.in-project true
 
-.PHONY: package-install
-package-install:
+.PHONY: install-package
+install-package:
 	poetry install $(test "$YOUR_ENV" = PRD && echo "--no-dev")
 
 .PHONY: git-init
@@ -35,8 +35,8 @@ pre-commit-install:
 pre-commit:
 	poetry run pre-commit run -a
 
-.PHONY: setup-init
-setup-init: install-poetry poetry-config package-install git-init pre-commit-install
+.PHONY: init
+init: install-poetry poetry-config install-package git-init pre-commit-install
 
 .PHONY: setup
-setup-init: install-poetry poetry-config package-install pre-commit-install
+setup: install-poetry poetry-config install-package pre-commit-install

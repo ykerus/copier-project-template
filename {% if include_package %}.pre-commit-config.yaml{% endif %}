@@ -17,7 +17,7 @@ repos:
     rev: v0.991
     hooks:
       - id: mypy
-      - args: ["--disallow-untyped-defs"]
+        args: ["--disallow-untyped-defs"]
   - repo: https://github.com/ambv/black
     rev: 22.12.0
     hooks:

@@ -35,8 +35,8 @@ include_package:
 include_tests:
   type: bool
   help: Do you want to include a tests folder?
-  when: {{ include_package }}
-  default:s
+  when: { { include_package } }
+  default: True
 
 include_devcontainer:
   type: bool

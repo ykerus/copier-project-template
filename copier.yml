@@ -1,6 +1,6 @@
-project_title:
+project_name:
   type: str
-  help: How would you title the project?
+  help: What is the name of the project?
 
 package_name:
   type: str
@@ -29,16 +29,17 @@ include_notebooks:
 
 include_package:
   type: bool
-  help: Do you want to include the package folder?
+  help: Do you want to include a package folder?
   default: True
 
 include_tests:
   type: bool
   help: Do you want to include a tests folder?
-  when: { { include_package } }
+  when: "{{ include_package }}"
   default: True
 
 include_devcontainer:
   type: bool
   help: Do you want to include a devcontainer?
   when: "{{ include_package }}"
+  default: True

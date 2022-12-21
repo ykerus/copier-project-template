@@ -1,5 +1,11 @@
 _subdirectory: template
 
+_tasks:
+  - "\n if ! command -v poetry &> /dev/null \n then \n pip install poetry \n fi"
+  - "git init"
+  - "git add ."
+  - "git commit -m 'Init'"
+
 project_name:
   type: str
   help: What is the name of the project?

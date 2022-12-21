@@ -129,7 +129,6 @@ dmypy.json
 .pyre/
 
 # Custom
-notebooks/development/
-.vscode
 poetry.lock
 .DS_Store
+.vscode

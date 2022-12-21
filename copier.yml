@@ -4,25 +4,19 @@ project_name:
   type: str
   help: What is the name of the project?
 
-package_name:
+project_description:
   type: str
-  help: What is the name of the package?
-  default: |-
-    {{ project_name.lower().replace("-", "_").replace(" ", "_") }}
-
-python_version:
-  type: str
-  help: What python version are you using?
-  default: 3.9
+  help: How would you describe the project?
 
 author:
   type: str
   help: Who is the author?
   default: Yke Rusticus
 
-project_description:
+python_version:
   type: str
-  help: How would you describe the project?
+  help: Which python version are you using?
+  default: 3.9
 
 include_notebooks:
   type: bool
@@ -34,14 +28,27 @@ include_package:
   help: Do you want to include a package folder?
   default: True
 
+package_name:
+  type: str
+  help: What is the name of the package?
+  when: "{{ include_package }}"
+  default: |-
+    {{ project_name.lower().replace("-", "_").replace(" ", "_") }}
+
 include_tests:
   type: bool
   help: Do you want to include a tests folder?
   when: "{{ include_package }}"
-  default: True
+  default: "{{ include_package }}"
+
+include_precommit:
+  type: bool
+  help: Do you want to include pre-commit?
+  when: "{{ include_package }}"
+  default: "{{ include_package }}"
 
 include_devcontainer:
   type: bool
   help: Do you want to include a devcontainer?
   when: "{{ include_package }}"
-  default: True
+  default: "{{ include_package }}"

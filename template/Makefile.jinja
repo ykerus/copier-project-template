@@ -1,17 +1,12 @@
 .PHONY: help
 help:
-	@echo "install-poetry     : Install poetry, needed to install packages"
 	@echo "poetry-config      : Configure poetry"
-	@echo "package-install    : Install the package `{{package_name}}` and its dependencies"
-	@echo "git-init           : Initialize the project as git repo (enables pre-commit use)"
+	@echo "install-package    : Install the package `{{package_name}}` and its dependencies"
+{%- if include_precommit %}	
 	@echo "pre-commit-install : Install pre-commit hooks"
 	@echo "pre-commit         : Run pre-commit"
-	@echo "setup-init         : Setup everthing and init git repo"
-	@echo "setup              : Setup everthing except git repo"
-
-.PHONY: install-poetry
-install-poetry:
-	pip install poetry
+{%- endif %}
+	@echo "setup              : Set up the project, assuming poetry is installed"
 
 .PHONY: poetry-config
 poetry-config:
@@ -20,13 +15,7 @@ poetry-config:
 .PHONY: install-package
 install-package:
 	poetry install $(test "$YOUR_ENV" = PRD && echo "--no-dev")
-
-.PHONY: git-init
-git-init:
-	poetry run git init
-	poetry run git add .
-	poetry run git commit -m "Init"
-
+{% if include_precommit %}
 .PHONY: pre-commit-install
 pre-commit-install:
 	poetry run pre-commit install
@@ -34,9 +23,6 @@ pre-commit-install:
 .PHONY: pre-commit
 pre-commit:
 	poetry run pre-commit run -a
-
-.PHONY: init
-init: install-poetry poetry-config install-package git-init pre-commit-install
-
+{% endif %}
 .PHONY: setup
-setup: install-poetry poetry-config install-package pre-commit-install
+setup: poetry-config install-package {% if include_precommit %}pre-commit-install{% endif %}

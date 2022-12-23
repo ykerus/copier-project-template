@@ -5,11 +5,15 @@ description = "{{project_description}}"
 authors = ["{{author}}"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^{{python_version}}"
 
 [tool.poetry.group.dev.dependencies]
+{%- if include_tests %}
 pytest = "^7.2.0"
+{%- endif %}
+{%- if include_notebooks %}
 ipykernel = "^6.19.2"
+{%- endif %}
 {%- if include_precommit %}
 virtualenv = "20.16.7"
 pre-commit = "^2.20.0"

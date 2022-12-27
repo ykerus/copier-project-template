@@ -2,7 +2,7 @@
 help:
 	@echo "poetry-config      : Configure poetry"
 	@echo "install-package    : Install the package `{{package_name}}` and its dependencies"
-{%- if include_precommit %}	
+{%- if include_precommit %}
 	@echo "pre-commit-install : Install pre-commit hooks"
 	@echo "pre-commit         : Run pre-commit"
 {%- endif %}

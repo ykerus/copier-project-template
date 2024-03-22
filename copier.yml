@@ -7,11 +7,18 @@ _tasks:
   - "git init"
   - "git add ."
   - "git commit -m 'Init'"
+  - "python -m venv .venv"
+  - "source .venv/bin/activate && pip install --upgrade pip && pip install -e '.[dev]'"
+  - "source .venv/bin/activate && pre-commit install"
 
 python_version:
   type: str
   help: Which python version are you using?
-  default: 3.11
+  default: 3.9
+
+author:
+  type: str
+  help: Who is the author?
 
 project_name:
   type: str

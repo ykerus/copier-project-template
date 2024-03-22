@@ -8,8 +8,7 @@ dependencies = [
 ]
 requires-python = ">={{ python_version }}"
 authors = [
-    {name = "Your Name", email = "your@email.address"},
-    {name = "Your Co-Author", email = "their@email.address"},
+    {name = "{{ author }}"},
 ]
 description = "{{ project_description }}"
 readme = "README.md"
@@ -25,3 +24,7 @@ your-cli-command = "example.source:main"
 
 [tool.setuptools_scm]
 version_file = "src/{{ package_name }}/_version.py"
+
+[tool.ruff]
+line-length = 100
+lint.select = ["I001"]  # See all rules here: https://docs.astral.sh/ruff/rules/

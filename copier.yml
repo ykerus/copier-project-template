@@ -26,6 +26,5 @@ project_description:
 package_name:
   type: str
   help: What is the name of the package?
-  when: "{{ include_package }}"
   default: |-
     {{ project_name.lower().replace("-", "_").replace(" ", "_") }}

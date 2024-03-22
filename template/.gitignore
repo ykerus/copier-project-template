@@ -299,3 +299,4 @@ $RECYCLE.BIN/
 # Custom
 *.html
 *.ipynb
+*_version.py

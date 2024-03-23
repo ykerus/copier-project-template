@@ -10,6 +10,7 @@ _tasks:
   - "python -m venv .venv"
   - "source .venv/bin/activate && pip install --upgrade pip && pip install -e '.[dev]'"
   - "source .venv/bin/activate && pre-commit install"
+  - "code ."
 
 python_version:
   type: str

@@ -29,4 +29,8 @@ version_file = "src/{{ package_name }}/_version.py"
 
 [tool.ruff]
 line-length = 100
-lint.select = ["I001"]  # More rules here: https://docs.astral.sh/ruff/rules/
+lint.select = ["I"]  # More rules here: https://docs.astral.sh/ruff/rules/
+src = ["src"]
+
+[tool.black]
+line-length = 100
